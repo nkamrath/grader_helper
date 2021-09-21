@@ -83,7 +83,7 @@ class GraderWorkspace:
             os.system(f'pytest > {test_output_file}')
             os.chdir('..')
         else:
-            print(f'Error repo {repo} not on disk')
+            logger.log(f'Error repo {repo} not on disk', logger.LOG_LEVEL_ERROR)
 
     '''
     Attempt to run unit tests for every repo in the workspace using a process pool.

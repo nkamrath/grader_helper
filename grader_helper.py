@@ -36,10 +36,6 @@ for key, value in mapping.items():
     print('{} -> {}'.format(key, value))
 logger.log('readyToSubmit count: ', len(mapping))
 
-#run all unit tests if configured
-if(config_get('run_unit_tests')):
-    workspace.run_all_unit_tests()
-
 #Look for late submissions using the due date and git commit time
 for r in repos:
     submission_time = workspace.get_last_commit_time(r)
@@ -47,6 +43,10 @@ for r in repos:
     #print(f'Submission time {submission_time}')
     if(submission_time > due_date):
         print(f'{r.name} was late by \t\t\t\t{submission_time-due_date}')
+
+#run all unit tests if configured
+if(config_get('run_unit_tests')):
+    workspace.run_all_unit_tests()
 
 workspace.exit_workspace()
 
