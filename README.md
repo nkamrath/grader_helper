@@ -7,3 +7,6 @@ You need to create a local config file to store your personal access token for G
 MY_GITHUB_TOKEN = "your token string from github"
 
 This file is already in the gitignore to prevent anyone sharing their PAT by mistake.
+
+grader_helper.py is the main file, so execute with:
+python grader_helper.py

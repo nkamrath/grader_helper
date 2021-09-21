@@ -10,9 +10,9 @@ logger.log("Assignment {}".format(config_get('assignment')))
 logger.log("Gathering repositories...")
 
 #create the github helper with our PAT for github api requests
-gh = github_helper.GithubHelper(config_get('token'), config_get('organization'))
+gh = github_helper.GithubHelper(config_get('token'))
 #get all repos in the org that match the assignment string regex
-repos = gh.get_all_repos('.*{}'.format(config_get('assignment')))
+repos = gh.get_all_organization_repos(config_get('organization'), '.*{}'.format(config_get('assignment')))
 
 logger.log("repos found in {}: {}".format(config_get('assignment'), len(repos)))
 for r in repos:
