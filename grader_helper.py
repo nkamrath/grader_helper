@@ -39,10 +39,13 @@ logger.log('readyToSubmit count: ', len(mapping))
 #Look for late submissions using the due date and git commit time
 for r in repos:
     submission_time = workspace.get_last_commit_time(r)
-    due_date = config_get('due_date')
-    #print(f'Submission time {submission_time}')
-    if(submission_time > due_date):
-        print(f'{r.name} was late by \t\t\t\t{submission_time-due_date}')
+    if(submission_time != None):
+        due_date = config_get('due_date')
+        #print(f'Submission time {submission_time}')
+        if(submission_time > due_date):
+            print(f'{r.name} was late by \t\t\t\t{submission_time-due_date}')
+    else:
+        print(f'{r.name} has no commit time!')
 
 #run all unit tests if configured
 if(config_get('run_unit_tests')):

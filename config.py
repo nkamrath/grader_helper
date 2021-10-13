@@ -18,7 +18,7 @@ due_date : the date time the assignment was due.  This is only used to automatic
 configs = {
     'token' : local_config.MY_GITHUB_TOKEN,
     'organization' : 'ec-2021-fall',
-    'assignment' : 'maps1b',
+    'assignment' : 'maps1d',
     'run_unit_tests' : False,
-    'due_date' : datetime.datetime.strptime('2021-09-12 22:00:00', '%Y-%m-%d %H:%M:%S')
+    'due_date' : datetime.datetime.strptime('2021-10-10 22:00:00', '%Y-%m-%d %H:%M:%S')
 }

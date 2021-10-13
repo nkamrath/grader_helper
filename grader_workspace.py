@@ -101,14 +101,20 @@ class GraderWorkspace:
     Get the last commit time for the specified repo as a python date time object.
     '''
     def get_last_commit_time(self, repo):
-        os.chdir(repo.name)
-        #we parse the results of a git log on the latest commit and use a regex to get only the date-time componenets from the result.
-        p = subprocess.Popen(['git', 'log' , '-1', '--date=iso'], stdout=subprocess.PIPE)
-        out, err = p.communicate()
-        m = re.search('\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}', str(out))
-        os.chdir('..')
-        date_time = datetime.datetime.strptime(m.group(0), '%Y-%m-%d %H:%M:%S')
-        return date_time
+        if(os.path.exists(repo.name)):
+            os.chdir(repo.name)
+            #we parse the results of a git log on the latest commit and use a regex to get only the date-time componenets from the result.
+            p = subprocess.Popen(['git', 'log' , '-1', '--date=iso'], stdout=subprocess.PIPE)
+            out, err = p.communicate()
+            m = re.search('\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}', str(out))
+            os.chdir('..')
+            if m != None:
+                date_time = datetime.datetime.strptime(m.group(0), '%Y-%m-%d %H:%M:%S')
+                return date_time
+            else:
+                return None
+        else:
+            print(f"repo for: {repo.name} does not exist!")
 
     '''
     Generate a GitHub user name to auburn student ID mapping using the readyToSubmit.txt files where available.
